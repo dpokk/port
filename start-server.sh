@@ -56,7 +56,7 @@ export NODE_OPTIONS="--require $PROJECT_DIR/termux-cpu-fix.js"
 if [ "$MODE" = "prod" ]; then
   echo "Starting PRODUCTION server in tmux session '$SESSION'..."
   tmux new-session -d -s "$SESSION" -c "$PROJECT_DIR" \
-    "export NODE_OPTIONS='--require $PROJECT_DIR/termux-cpu-fix.js'; pnpm build && pnpm start; exec bash"
+    "export NODE_OPTIONS='--require $PROJECT_DIR/termux-cpu-fix.js'; pnpm build:termux && pnpm start; exec bash"
 else
   echo "Starting DEV server in tmux session '$SESSION'..."
   tmux new-session -d -s "$SESSION" -c "$PROJECT_DIR" \
