@@ -44,11 +44,11 @@ if ! pgrep -x sshd > /dev/null; then
 fi
 
 # ------------------------------------------
-# Termux fix: os.cpus() returns 0 on Android,
+# Termux fix: os.cpus() returns [] on Android,
 # which breaks concurrency libraries (p-limit).
-# Force UV_THREADPOOL_SIZE so Node sees CPUs.
+# Preload a patch that returns a fake CPU entry.
 # ------------------------------------------
-export UV_THREADPOOL_SIZE=4
+export NODE_OPTIONS="--require $PROJECT_DIR/termux-cpu-fix.js"
 
 # ------------------------------------------
 # Start tmux session
@@ -56,11 +56,11 @@ export UV_THREADPOOL_SIZE=4
 if [ "$MODE" = "prod" ]; then
   echo "Starting PRODUCTION server in tmux session '$SESSION'..."
   tmux new-session -d -s "$SESSION" -c "$PROJECT_DIR" \
-    "export UV_THREADPOOL_SIZE=4; pnpm build && pnpm start; exec bash"
+    "export NODE_OPTIONS='--require $PROJECT_DIR/termux-cpu-fix.js'; pnpm build && pnpm start; exec bash"
 else
   echo "Starting DEV server in tmux session '$SESSION'..."
   tmux new-session -d -s "$SESSION" -c "$PROJECT_DIR" \
-    "export UV_THREADPOOL_SIZE=4; pnpm dev; exec bash"
+    "export NODE_OPTIONS='--require $PROJECT_DIR/termux-cpu-fix.js'; pnpm dev; exec bash"
 fi
 
 echo ""
