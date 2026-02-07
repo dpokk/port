@@ -21,7 +21,7 @@ fi
 if tmux has-session -t nextjs 2>/dev/null; then
   echo "  [✓] tmux session 'nextjs' active"
 else
-  echo "  [✗] tmux session 'nextjs' NOT found — start with: bash start-server.sh"
+  echo "  [✗] tmux session 'nextjs' NOT found — start with: bash ~/port/start-server.sh"
 fi
 
 # Node

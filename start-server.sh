@@ -18,7 +18,7 @@ set -e
 
 MODE="${1:-dev}"
 SESSION="nextjs"
-PROJECT_DIR="$HOME/portfolio"  # ← Change if your clone path differs
+PROJECT_DIR="$HOME/port"
 
 # ------------------------------------------
 # Validate
