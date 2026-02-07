@@ -1,0 +1,25 @@
+# ============================================
+# SSH Config — Add to ~/.ssh/config on Windows
+# ============================================
+# File location: C:\Users\<YourUser>\.ssh\config
+#
+# After adding, connect with just:
+#   ssh termux-local    (on same Wi-Fi)
+#   ssh termux-remote   (via Tailscale)
+# ============================================
+
+# Local Wi-Fi connection
+Host termux-local
+    HostName 192.168.x.x          # ← Replace with phone's LAN IP
+    Port 8022
+    User u0_a415                   # ← Replace with your Termux username
+    StrictHostKeyChecking no
+    UserKnownHostsFile /dev/null
+
+# Remote via Tailscale
+Host termux-remote
+    HostName 100.xx.yy.zz         # ← Replace with phone's Tailscale IP
+    Port 8022
+    User u0_a415                   # ← Replace with your Termux username
+    StrictHostKeyChecking no
+    UserKnownHostsFile /dev/null
